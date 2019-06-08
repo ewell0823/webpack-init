@@ -10,6 +10,9 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: outputPath
+  },
+  devServer: {
+    contentBase: outputPath // デフォルト起動画面（index.html）の指定
   }
 }
 
