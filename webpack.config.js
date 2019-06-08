@@ -11,6 +11,17 @@ module.exports = {
     filename: 'main.js',
     path: outputPath
   },
+  module: {
+    rules: [
+      {
+        test: /\.css/,
+        use: [
+          'style-loader',
+          'css-loader' // revers orderのため、逆順に読み込まれる仕様
+        ]
+      }
+    ]
+  },
   devServer: {
     contentBase: outputPath // デフォルト起動画面（index.html）の指定
   }
