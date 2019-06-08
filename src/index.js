@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 function component() {
   const element = document.createElement('div');
   const array = ['Hello', 'webpack']
@@ -6,3 +8,4 @@ function component() {
 }
 
 document.body.appendChild(component())
+
