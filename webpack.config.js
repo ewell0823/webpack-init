@@ -19,6 +19,14 @@ module.exports = {
           'style-loader',
           'css-loader' // revers orderのため、逆順に読み込まれる仕様
         ]
+      },
+      {
+        test: /\.(jpe?g|peg|gif|svg|ico|png)$/i,
+        loader: 'url-loader',
+        options: {
+          limit: 2048,
+          name: './images/[name].[ext]'
+        }
       }
     ]
   },
