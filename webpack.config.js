@@ -1,6 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
 const outputPath = path.resolve(__dirname, 'dist') // 絶対パスを生成
 
 // console.log({outputPath})
@@ -60,7 +62,16 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css' // [name]はデフォルトでmainになる。[hash]はバンドルの度にユニークの値を設定する（ビルドする度のキャッシュの回避に有効）
     })
-  ]
+  ],
+  optimization: { // 「最適化」のこと。
+    minimizer: [new UglifyJsPlugin({ // https://github.com/mishoo/UglifyJS2
+      uglifyOptions: {
+        compress: {
+          drop_console: true
+        }
+      }
+    })]
+  }
 }
 
 // npx webpack --mode development 実行コマンド
