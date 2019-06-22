@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const outputPath = path.resolve(__dirname, 'dist') // 絶対パスを生成
 
 // console.log({outputPath})
@@ -19,17 +20,17 @@ module.exports = {
         exclude: /node_modules/, // node_modulesのディレクトリ配下にあるものはトランスパイルの対象から除外する
         loader: "babel-loader" // トランスパイルの実行
       },
+      // {
+      //   test: /\.css/,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     'css-loader' // revers orderのため、逆順に読み込まれる仕様
+      //   ]
+      // },
       {
-        test: /\.css/,
+        test: /\.(sc|c)ss/,
         use: [
-          'style-loader',
-          'css-loader' // revers orderのため、逆順に読み込まれる仕様
-        ]
-      },
-      {
-        test: /\.scss/,
-        use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -55,6 +56,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css' // [name]はデフォルトでmainになる。[hash]はバンドルの度にユニークの値を設定する（ビルドする度のキャッシュの回避に有効）
     })
   ]
 }
