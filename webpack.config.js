@@ -1,4 +1,5 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const outputPath = path.resolve(__dirname, 'dist') // 絶対パスを生成
 
 // console.log({outputPath})
@@ -13,6 +14,11 @@ module.exports = {
   },
   module: {
     rules: [
+      { 
+        test: /\.jsx?$/, // testには拡張子を登録。モダンなシンタックスで書かれたのものはトランスパイルの対象になる。（js or jsx が対象になる）
+        exclude: /node_modules/, // node_modulesのディレクトリ配下にあるものはトランスパイルの対象から除外する
+        loader: "babel-loader" // トランスパイルの実行
+      },
       {
         test: /\.css/,
         use: [
@@ -35,12 +41,22 @@ module.exports = {
           limit: 2048,
           name: './images/[name].[ext]'
         }
+      },
+      {
+        test: /\html$/,
+        loader: 'html-loader'
       }
     ]
   },
   devServer: {
     contentBase: outputPath // デフォルト起動画面（index.html）の指定
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html'
+    })
+  ]
 }
 
 // npx webpack --mode development 実行コマンド
