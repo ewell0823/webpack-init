@@ -76,7 +76,8 @@ module.exports = {
       }),
       new OptimizeCSSAssetsPlugin({})
     ]
-  }
+  },
+  devtool: 'eval-source-map'
 }
 
 // npx webpack --mode development 実行コマンド
