@@ -1,6 +1,5 @@
 # webpack-init
 webpack 初期設定
-
 ## npm 初期化
 
 `npm init -y`
@@ -41,3 +40,4 @@ index.htmlに依存する様々なファイルをブラウザが個々に取得�
 webpackはモジュールをかき集めてbundleする。
 bundleした成果物の出力先（distディレクトリ）の設定
 `mkdir dist`
+
