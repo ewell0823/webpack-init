@@ -41,3 +41,5 @@ index.htmlに依存する様々なファイルをブラウザが個々に取得�
 webpackはモジュールをかき集めてbundleする。
 bundleした成果物の出力先（distディレクトリ）の設定
 `mkdir dist`
+
+
